@@ -31,7 +31,7 @@ const Home = () => {
       sx={{
         display: "flex",
         // justifyContent: "center",
-        // alignItems: "center",
+        alignItems: "center",
         height: "calc(100vh - 130px)",
         width: "100vw",
       }}
@@ -39,18 +39,30 @@ const Home = () => {
       <Box
         sx={{
           display: "flex",
+          //   justifyContent: "center",
+          //   alignItems: "center",
           flexDirection: "column",
+          //   width: "90vw",
         }}
       >
         <Typography
-          variant="h3"
+          variant="h6"
           sx={{
             fontWeight: "bold",
           }}
         >
-          Hi, I'm Allan
+          Hi, my name is
         </Typography>
-        <Typography variant="h5">Software Developer</Typography>
+        <Typography
+          variant="h2"
+          sx={{
+            fontSize: "80px",
+            fontWeight: 600,
+          }}
+        >
+          Allan Juma
+        </Typography>
+        <Typography variant="h5">I turn ideas into products</Typography>
         <Box
           sx={{
             display: "flex",
