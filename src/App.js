@@ -1,6 +1,7 @@
-import { Grid, ThemeProvider, createTheme, useTheme } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainLayout from "./components/layouts/mainLayout";
+import Home from "./pages/home";
 
 const theme = createTheme({
   mode: "light",
@@ -10,8 +11,8 @@ const theme = createTheme({
       dark: "#000",
     },
     textColor: {
-      light: "#000",
-      dark: "#fff",
+      light: "#fff",
+      dark: "#000",
     },
   },
 });
@@ -24,8 +25,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<MainLayout />}>
-            <Route path="/" element={<h1>Home</h1>} />
-            <Route path="/home" element={<h1>Home</h1>} />
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/about" element={<h1>About</h1>} />
             <Route path="/blog" element={<h1>Blog</h1>} />
             <Route path="/projects" element={<h1>Projects</h1>} />
