@@ -22,11 +22,7 @@ const drawerWidth = 200;
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openSubMenu, setOpenSubMenu] = useState(null);
 
-  const handleSubMenuToggle = (index) => {
-    setOpenSubMenu(openSubMenu === index ? null : index);
-  };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -38,47 +34,32 @@ function ResponsiveDrawer(props) {
   const navlinks = [
     {
       name: "Home",
-      path: "/Home",
+      path: "/home",
     },
     {
       name: "About Me",
-      path: "/About",
+      path: "/about",
     },
     {
       name: "Blog",
-      path: "/Blog",
+      path: "/blog",
     },
     {
       name: "Projects",
-      path: "/Projects",
+      path: "/projects",
     },
     {
       name: "Contacts",
-      path: "/Contacts",
-      badge: 4,
+      path: "/contacts",
     },
   ];
 
   const drawer = (
     <Box>
-      <Toolbar />
-      <Divider />
       <List>
         {navlinks.map((item, index) => (
           <Box key={index}>
-            <ListItem
-              button
-              onClick={() => item.submenu && handleSubMenuToggle(index)}
-              component={!item.submenu && Link}
-              to={item.path}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 35,
-                }}
-              >
-                {item.icon}
-              </ListItemIcon>
+            <ListItem button component={Link} to={item.path}>
               <ListItemText>
                 <Typography variant="body1">{item.name}</Typography>
               </ListItemText>
@@ -106,13 +87,11 @@ function ResponsiveDrawer(props) {
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
           boxShadow: "none",
-          backgroundColor:
-            currentTheme === "light"
-              ? theme.palette.bgColor.light
-              : theme.palette.bgColor.dark,
+          //   backgroundColor:
+          //     currentTheme === "light"
+          //       ? theme.palette.bgColor.light
+          //       : theme.palette.bgColor.dark,
         }}
       >
         <Toolbar>
@@ -136,9 +115,9 @@ function ResponsiveDrawer(props) {
         </Toolbar>
       </AppBar>
       <Box
-        component="nav"
         sx={{
-          width: { sm: drawerWidth },
+          mt: 20,
+          //   width: { xs: drawerWidth, sm: 0 },
           flexShrink: { sm: 0 },
         }}
         aria-label="mailbox folders"
@@ -148,24 +127,9 @@ function ResponsiveDrawer(props) {
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
           sx={{
-            display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": {
+              pt: 6.9,
               boxSizing: "border-box",
               width: drawerWidth,
               backgroundColor:
@@ -174,7 +138,6 @@ function ResponsiveDrawer(props) {
                   : theme.palette.bgColor.dark,
             },
           }}
-          open
         >
           {drawer}
         </Drawer>
@@ -185,7 +148,7 @@ function ResponsiveDrawer(props) {
           overflowX: "hidden",
         }}
       >
-        <Toolbar sx={{}} />
+        <Toolbar />
         {props.children}
       </Box>
     </Box>
