@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { Grid, ThemeProvider, createTheme, useTheme } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
+import MainLayout from "./components/layouts/mainLayout";
+
+const theme = createTheme({
+  mode: "dark",
+  palette: {
+    bgColor: {
+      light: "#fff",
+      dark: "#000",
+    },
+    textColor: {
+      light: "#000",
+      dark: "#fff",
+    },
+  },
+});
+
+theme.palette.background.default = "#000";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/about" element={<h1>About</h1>} />
+          <Route path="/blog" element={<h1>Blog</h1>} />
+          <Route path="/projects" element={<h1>Projects</h1>} />
+          <Route path="/contacts" element={<h1>Contacts</h1>} />
+        </Route>
+      </Routes>
+    </ThemeProvider>
   );
 }
 
