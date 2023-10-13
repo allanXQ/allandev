@@ -14,6 +14,8 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { DarkMode, LightMode } from "@mui/icons-material";
+
 import { useState } from "react";
 import { useTheme } from "@emotion/react";
 
@@ -111,7 +113,20 @@ function ResponsiveDrawer(props) {
               alignItems: "center",
               width: "100%",
             }}
-          ></Box>
+          >
+            {navlinks.map((item, index) => (
+              <Box key={index}>
+                <ListItem button component={Link} to={item.path}>
+                  <ListItemText>
+                    <Typography variant="body1">{item.name}</Typography>
+                  </ListItemText>
+                </ListItem>
+              </Box>
+            ))}
+          </Box>
+          <IconButton>
+            {currentTheme === "light" ? <DarkMode /> : <LightMode />}
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Box
@@ -120,7 +135,6 @@ function ResponsiveDrawer(props) {
           //   width: { xs: drawerWidth, sm: 0 },
           flexShrink: { sm: 0 },
         }}
-        aria-label="mailbox folders"
       >
         <Drawer
           container={container}
